@@ -62,3 +62,14 @@ TEST_CASE("Teste 4: contaPalavras desconsidera acentos") {
     REQUIRE(resultado["o"] == 2);
     REQUIRE(resultado["u"] == 2);
 }
+
+TEST_CASE("Teste 5: separação de palavras"){
+    std::string nomeArquivo = "teste5.txt";
+    std::string conteudo = "teste contagem";
+    criarArquivoTeste(nomeArquivo, conteudo);
+
+    std::unordered_map<std::string, int> resultado = contaPalavras(nomeArquivo);
+    REQUIRE(resultado.size() == 2);
+    REQUIRE(resultado["teste"] == 1);
+    REQUIRE(resultado["contagem"] == 1);
+}
