@@ -2,8 +2,9 @@
 #define CONTADOR_PALAVRAS_HPP
 
 #include <string>
+#include <unordered_map>
 #include <vector>
 
-bool contaPalavras(const std::vector<std::string>& words);
-
+std::string lerArquivoParaString(const std::string& nomeArquivo);
+std::unordered_map<std::string, int> contaPalavras(const std::string& texto);  
 #endif

@@ -1,20 +1,16 @@
-//logica do programa
-//aqui deve estar a logica de contar a frequencia das palavras
-//logica de ordenacao das palavras
-
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
+#include "conta_palavras.hpp"
 #include <sstream>
-#include <algorithm>
+#include <unordered_map>
+#include <string>
 
-#include <iostream>
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
-}
+std::unordered_map<std::string, int> contaPalavras(const std::string& texto) {
+    std::unordered_map<std::string, int> contagem;
+    std::istringstream stream(texto);
+    std::string palavra;
 
-void contaPalavras(const std::vector<std::string>& words){
-    
+    while (stream >> palavra) {
+        contagem[palavra]++;
+    }
+
+    return contagem;
 }
