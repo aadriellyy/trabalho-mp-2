@@ -73,3 +73,17 @@ TEST_CASE("Teste 5: separação de palavras"){
     REQUIRE(resultado["teste"] == 1);
     REQUIRE(resultado["contagem"] == 1);
 }
+
+TEST_CASE("Teste 6: desconsidera caracteres especiais"){
+    std::string nomeArquivo = "teste6.txt";
+    std::string conteudo = "teste, contagem. contagem teste!";
+    criarArquivoTeste(nomeArquivo, conteudo);
+
+    std::unordered_map<std::string, int> resultado = contaPalavras(nomeArquivo);
+    REQUIRE(resultado.size() == 4);
+    REQUIRE(resultado["teste"] == 2);
+    REQUIRE(resultado["contagem"] == 2);
+}
+
+
+
