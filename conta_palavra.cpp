@@ -1,6 +1,6 @@
 #include "conta_palavras.hpp"
 #include <sstream>
-#include <unordered_map>
+#include <map>
 #include <string>
 #include <locale>
 #include <codecvt>
@@ -46,9 +46,9 @@ std::string removerCaracteresEspeciais(const std::string& str) {
 }
 
 // Função para contar palavras em um arquivo
-std::unordered_map<std::string, int> contaPalavras(const std::string& nomeArquivo) {
+std::map<std::string, int> contaPalavras(const std::string& nomeArquivo) {
     std::ifstream arquivo(nomeArquivo);
-    std::unordered_map<std::string, int> contagem;
+    std::map<std::string, int> contagem;
     std::string palavra;
 
     while (arquivo >> palavra) {
