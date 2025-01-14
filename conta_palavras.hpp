@@ -1,9 +1,11 @@
-#ifndef CONTADOR_PALAVRAS_HPP
-#define CONTADOR_PALAVRAS_HPP
+#ifndef CONTA_PALAVRAS_HPP
+#define CONTA_PALAVRAS_HPP
 
 #include <string>
 #include <map>
 
-std::map<std::string, int> contaPalavras(const std::string& texto);
+std::map<std::string, int> contaPalavras(const std::string& nomeArquivo);
+std::string removerAcentos(const std::string& str);
+std::string removerCaracteresEspeciais(const std::string& str);
 
-#endif // CONTADOR_PALAVRAS_HPP
+#endif // CONTA_PALAVRAS_HPP

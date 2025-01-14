@@ -47,8 +47,8 @@ std::string removerCaracteresEspeciais(const std::string& str) {
 
 // Função para contar palavras em um arquivo
 std::map<std::string, int> contaPalavras(const std::string& nomeArquivo) {
-    std::ifstream arquivo(nomeArquivo);
     std::map<std::string, int> contagem;
+    std::ifstream arquivo(nomeArquivo);
     std::string palavra;
 
     while (arquivo >> palavra) {
@@ -57,6 +57,6 @@ std::map<std::string, int> contaPalavras(const std::string& nomeArquivo) {
         ++contagem[palavra];
     }
 
-    arquivo.close();
+    //arquivo.close();
     return contagem;
 }
