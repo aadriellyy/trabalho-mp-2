@@ -80,7 +80,7 @@ TEST_CASE("Teste 6: desconsidera caracteres especiais"){
     criarArquivoTeste(nomeArquivo, conteudo);
 
     std::unordered_map<std::string, int> resultado = contaPalavras(nomeArquivo);
-    REQUIRE(resultado.size() == 4);
+    REQUIRE(resultado.size() == 2);
     REQUIRE(resultado["teste"] == 2);
     REQUIRE(resultado["contagem"] == 2);
 }

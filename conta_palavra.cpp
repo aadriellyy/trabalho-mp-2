@@ -34,30 +34,27 @@ std::string removerAcentos(const std::string& str) {
     return converter.to_bytes(result);
 }
 
+// Função para remover caracteres especiais de uma string
+std::string removerCaracteresEspeciais(const std::string& str) {
+    std::string result;
+    for (char ch : str) {
+        if (std::isalnum(ch)) {
+            result += ch;
+        }
+    }
+    return result;
+}
+
+// Função para contar palavras em um arquivo
 std::unordered_map<std::string, int> contaPalavras(const std::string& nomeArquivo) {
-    std::unordered_map<std::string, int> contagem;
     std::ifstream arquivo(nomeArquivo);
+    std::unordered_map<std::string, int> contagem;
     std::string palavra;
 
-    if (!arquivo.is_open()) {
-        throw std::runtime_error("Não foi possível abrir o arquivo");
-    }
-
     while (arquivo >> palavra) {
-        // Remove pontuação no início e no fim da palavra
-        while (!palavra.empty() && std::ispunct(palavra.front())) {
-            palavra.erase(palavra.begin());
-        }
-        while (!palavra.empty() && std::ispunct(palavra.back())) {
-            palavra.pop_back();
-        }
-
-        // Remove acentos da palavra
         palavra = removerAcentos(palavra);
-
-        if (!palavra.empty()) {
-            contagem[palavra]++;
-        }
+        palavra = removerCaracteresEspeciais(palavra);
+        ++contagem[palavra];
     }
 
     arquivo.close();
