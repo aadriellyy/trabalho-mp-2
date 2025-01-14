@@ -6,8 +6,6 @@
 #include "conta_palavras.hpp"
 
 TEST_CASE("Teste 1: contaPalavras retorna vazio para texto vazio"){
-    std::string text = "";
-    std::vector<std::string> words = {text};
-    auto resultado = contaPalavras(words);
-    REQUIRE (resultado == true);
+    std::unordered_map<std::string, int> resultado = contaPalavrasDeString("");
+    REQUIRE(resultado.empty());
 }
