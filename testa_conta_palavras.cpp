@@ -33,3 +33,12 @@ TEST_CASE("Teste 3: contaPalavras diferencia maiusculas e minusculas") {
     REQUIRE(resultado["palavras"] == 1);
     REQUIRE(resultado["Palavras"] == 1);
 }
+
+TEST_CASE("Teste 4: contaPalavras desconsidera acentos") {
+    std::string texto = "é e a á o ó u ú";	
+    std::unordered_map<std::string, int> resultado = contaPalavras(texto);
+    REQUIRE(resultado["e"] == 2);
+    REQUIRE(resultado["a"] == 2);
+    REQUIRE(resultado["o"] == 2);
+    REQUIRE(resultado["u"] == 2);
+}
