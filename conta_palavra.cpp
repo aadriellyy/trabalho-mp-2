@@ -4,6 +4,7 @@
 #include <string>
 #include <locale>
 #include <codecvt>
+#include <fstream>
 
 // Função para remover acentos de uma string
 std::string removerAcentos(const std::string& str) {
@@ -33,12 +34,16 @@ std::string removerAcentos(const std::string& str) {
     return converter.to_bytes(result);
 }
 
-std::unordered_map<std::string, int> contaPalavras(const std::string& texto) {
+std::unordered_map<std::string, int> contaPalavras(const std::string& nomeArquivo) {
     std::unordered_map<std::string, int> contagem;
-    std::istringstream stream(texto);
+    std::ifstream arquivo(nomeArquivo);
     std::string palavra;
 
-    while (stream >> palavra) {
+    if (!arquivo.is_open()) {
+        throw std::runtime_error("Não foi possível abrir o arquivo");
+    }
+
+    while (arquivo >> palavra) {
         // Remove pontuação no início e no fim da palavra
         while (!palavra.empty() && std::ispunct(palavra.front())) {
             palavra.erase(palavra.begin());
@@ -55,5 +60,6 @@ std::unordered_map<std::string, int> contaPalavras(const std::string& texto) {
         }
     }
 
+    arquivo.close();
     return contagem;
 }
