@@ -2,8 +2,8 @@
 #define CONTADOR_PALAVRAS_HPP
 
 #include <string>
-#include <unordered_map>
+#include <map>
 
-std::unordered_map<std::string, int> contaPalavras(const std::string& texto);
+std::map<std::string, int> contaPalavras(const std::string& texto);
 
 #endif // CONTADOR_PALAVRAS_HPP
