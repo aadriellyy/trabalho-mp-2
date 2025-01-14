@@ -4,6 +4,6 @@
 #include <string>
 #include <vector>
 
-void contaPalavras(const std::vector<std::string>& words);
+bool contaPalavras(const std::vector<std::string>& words);
 
 #endif
