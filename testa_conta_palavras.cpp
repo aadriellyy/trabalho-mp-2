@@ -99,17 +99,29 @@ TEST_CASE("Teste 7: verificar ordem alfabetica das palavras com indices") {
     std::string conteudo = "este é um exemplo de texto para testar a ordenação de palavras";
     criarArquivoTeste(nomeArquivo, conteudo);
 
-    std::string texto = lerArquivo(nomeArquivo);
-    auto resultado = contaPalavras(texto);
+    //std::string texto = lerArquivo(nomeArquivo);
+    auto resultado = contaPalavras(nomeArquivo);
     auto vetorResultado = converterParaVetorOrdenado(resultado);
-    REQUIRE(vetorResultado.size() == 8);
-    REQUIRE(vetorResultado[0].first == "de");
-    REQUIRE(vetorResultado[1].first == "exemplo");
-    REQUIRE(vetorResultado[2].first == "este");
-    REQUIRE(vetorResultado[3].first == "para");
-    REQUIRE(vetorResultado[4].first == "palavras");
+    REQUIRE(vetorResultado.size() == 11);
+    REQUIRE(vetorResultado[0].first == "a");
+    REQUIRE(vetorResultado[1].first == "de");
+    REQUIRE(vetorResultado[2].first == "e");
+    REQUIRE(vetorResultado[3].first == "este");
+    REQUIRE(vetorResultado[4].first == "exemplo");
     REQUIRE(vetorResultado[5].first == "ordenacao");
-    REQUIRE(vetorResultado[6].first == "testar");
-    REQUIRE(vetorResultado[7].first == "texto");
+    REQUIRE(vetorResultado[6].first == "palavras");
+    REQUIRE(vetorResultado[7].first == "para");
+    REQUIRE(vetorResultado[8].first == "testar");
+    REQUIRE(vetorResultado[9].first == "texto");
 }
 
+//1-a
+//2-de
+//3-este
+//4-exemplo
+//5-é
+//6-ordenacao
+//7-para
+//8-palavras
+//9-testar
+//10-texto
