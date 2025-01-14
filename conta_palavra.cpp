@@ -8,8 +8,13 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
-#include "conta_palavras.hpp"
 
-bool contaPalavras(const std::vector<std::string>& words){
+#include <iostream>
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    return 0;
+}
+
+void contaPalavras(const std::vector<std::string>& words){
     
 }
