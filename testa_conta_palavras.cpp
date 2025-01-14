@@ -16,7 +16,20 @@ TEST_CASE("Teste 2: contaPalavras separa e conta corretamente") {
     std::string texto = "teste de contagem de palavras teste";
     std::unordered_map<std::string, int> resultado = contaPalavras(texto);
     REQUIRE(resultado["teste"] == 2);
-    REQUIRE(resultado["de"] == 1);
+    REQUIRE(resultado["de"] == 2);
     REQUIRE(resultado["contagem"] == 1);
     REQUIRE(resultado["palavras"] == 1);
+}
+
+TEST_CASE("Teste 3: contaPalavras diferencia maiusculas e minusculas") {
+    std::string texto = "teste Teste de De contagem Contagem de Palavras palavras teste";
+    std::unordered_map<std::string, int> resultado = contaPalavras(texto);
+    REQUIRE(resultado["teste"] == 2);
+    REQUIRE(resultado["Teste"] == 1);
+    REQUIRE(resultado["de"] == 2);
+    REQUIRE(resultado["De"] == 1);
+    REQUIRE(resultado["contagem"] == 1);
+    REQUIRE(resultado["Contagem"] == 1);
+    REQUIRE(resultado["palavras"] == 1);
+    REQUIRE(resultado["Palavras"] == 1);
 }
