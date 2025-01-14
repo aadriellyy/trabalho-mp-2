@@ -45,6 +45,13 @@ std::string removerCaracteresEspeciais(const std::string& str) {
     return result;
 }
 
+std::string lerArquivo(const std::string& nomeArquivo) {
+    std::ifstream arquivo(nomeArquivo);
+    std::stringstream buffer;
+    buffer << arquivo.rdbuf();
+    return buffer.str();
+}
+
 // Função para contar palavras em um arquivo
 std::map<std::string, int> contaPalavras(const std::string& nomeArquivo) {
     std::map<std::string, int> contagem;
