@@ -67,11 +67,17 @@ std::vector<std::string> converterParaVetorOrdenado(const std::map<std::string, 
 std::vector<std::string> ordenarPalavras(const std::vector<std::string>& palavras) {
     std::vector<std::string> palavrasOrdenadas = palavras;
     std::sort(palavrasOrdenadas.begin(), palavrasOrdenadas.end(), [](const std::string& a, const std::string& b) {
-        return a < b;
+        auto aLower = a;
+        auto bLower = b;
+        std::transform(aLower.begin(), aLower.end(), aLower.begin(), ::tolower);
+        std::transform(bLower.begin(), bLower.end(), bLower.begin(), ::tolower);
+        if (aLower == bLower) {
+            return a < b;
+        }
+        return aLower < bLower;
     });
     return palavrasOrdenadas;
 }
-
 
 // Função para contar palavras em um arquivo
 std::map<std::string, int> contaPalavras(const std::string& nomeArquivo) {
