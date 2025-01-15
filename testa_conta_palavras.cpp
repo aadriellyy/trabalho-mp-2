@@ -131,3 +131,26 @@ TEST_CASE("Teste 8: verificar ordem alfabetica das palavras com indices - difere
     REQUIRE(vetorResultado[10] == "testar");
     REQUIRE(vetorResultado[11] == "texto");
 }
+
+TEST_CASE("Teste 9: ordenar e tratar caracteres especiais") {
+    std::string nomeArquivo = "teste9.txt"; 
+    std::string conteudo = "este é um exemplo.... Exemplo,, de texto, para testar$ a A! ordenação? de palavras:";
+    criarArquivoTeste(nomeArquivo, conteudo);
+
+    //std::string texto = lerArquivo(nomeArquivo);
+    auto resultado = contaPalavras(nomeArquivo);
+    auto vetorResultado = ordenarPalavras(converterParaVetorOrdenado(resultado));
+    REQUIRE(vetorResultado.size() == 13);
+    REQUIRE(vetorResultado[0] == "A");
+    REQUIRE(vetorResultado[1] == "a");
+    REQUIRE(vetorResultado[2] == "de");
+    REQUIRE(vetorResultado[3] == "e");
+    REQUIRE(vetorResultado[4] == "este");
+    REQUIRE(vetorResultado[5] == "Exemplo");
+    REQUIRE(vetorResultado[6] == "exemplo");
+    REQUIRE(vetorResultado[7] == "ordenacao");
+    REQUIRE(vetorResultado[8] == "palavras");
+    REQUIRE(vetorResultado[9] == "para");
+    REQUIRE(vetorResultado[10] == "testar");
+    REQUIRE(vetorResultado[11] == "texto");
+}
