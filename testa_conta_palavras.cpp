@@ -156,17 +156,24 @@ TEST_CASE("Teste 9: ordenar e tratar caracteres especiais") {
 }
 
 TEST_CASE("Teste 10: verificar contagem e ordenação de palavras com hífens") {
-    std::string nomeArquivo = "teste12.txt"; 
+    std::string nomeArquivo = "teste10.txt"; 
     std::string conteudo = "palavra-chave palavra-chave palavra chave palavra-chave";
     criarArquivoTeste(nomeArquivo, conteudo);
 
     auto resultado = contaPalavras(nomeArquivo);
     auto vetorResultado = ordenarPalavras(converterParaVetorOrdenado(resultado));
     
-    REQUIRE(vetorResultado.size() == 2);
+    std::cout << "Resultado ordenado:" << std::endl;
+    for (const auto& palavra : vetorResultado) {
+        std::cout << palavra << std::endl;
+    }
+
+    REQUIRE(vetorResultado.size() == 3);
     REQUIRE(vetorResultado[0] == "chave");
-    REQUIRE(vetorResultado[1] == "palavra-chave");
+    REQUIRE(vetorResultado[1] == "palavra");
+    REQUIRE(vetorResultado[2] == "palavra-chave");
 
     REQUIRE(resultado["palavra-chave"] == 3);
     REQUIRE(resultado["chave"] == 1);
+    REQUIRE(resultado["palavra"] == 1);
 }

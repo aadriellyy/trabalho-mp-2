@@ -40,7 +40,7 @@ std::string removerAcentos(const std::string& str) {
 std::string removerCaracteresEspeciais(const std::string& str) {
     std::string result;
     for (char ch : str) {
-        if (std::isalnum(ch)) {
+        if (std::isalnum(ch) || ch == '-') {
             result += ch;
         }
     }
