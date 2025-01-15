@@ -16,12 +16,6 @@ void criarArquivoTeste(const std::string& nomeArquivo, const std::string& conteu
     arquivo.close();
 }
 
-std::vector<std::pair<std::string, int>> converterParaVetorOrdenado(const std::map<std::string, int>& mapa) {
-    std::vector<std::pair<std::string, int>> vetor(mapa.begin(), mapa.end());
-    std::sort(vetor.begin(), vetor.end());
-    return vetor;
-}
-
 TEST_CASE("Teste 1: contaPalavras retorna vazio para texto vazio") {
     std::string nomeArquivo = "teste1.txt";
     std::string conteudo = "";
@@ -101,18 +95,18 @@ TEST_CASE("Teste 7: verificar ordem alfabetica das palavras com indices") {
 
     //std::string texto = lerArquivo(nomeArquivo);
     auto resultado = contaPalavras(nomeArquivo);
-    auto vetorResultado = converterParaVetorOrdenado(resultado);
+    auto vetorResultado = ordenarPalavras(converterParaVetorOrdenado(resultado));
     REQUIRE(vetorResultado.size() == 11);
-    REQUIRE(vetorResultado[0].first == "a");
-    REQUIRE(vetorResultado[1].first == "de");
-    REQUIRE(vetorResultado[2].first == "e");
-    REQUIRE(vetorResultado[3].first == "este");
-    REQUIRE(vetorResultado[4].first == "exemplo");
-    REQUIRE(vetorResultado[5].first == "ordenacao");
-    REQUIRE(vetorResultado[6].first == "palavras");
-    REQUIRE(vetorResultado[7].first == "para");
-    REQUIRE(vetorResultado[8].first == "testar");
-    REQUIRE(vetorResultado[9].first == "texto");
+    REQUIRE(vetorResultado[0] == "a");
+    REQUIRE(vetorResultado[1] == "de");
+    REQUIRE(vetorResultado[2] == "e");
+    REQUIRE(vetorResultado[3] == "este");
+    REQUIRE(vetorResultado[4] == "exemplo");
+    REQUIRE(vetorResultado[5] == "ordenacao");
+    REQUIRE(vetorResultado[6] == "palavras");
+    REQUIRE(vetorResultado[7] == "para");
+    REQUIRE(vetorResultado[8] == "testar");
+    REQUIRE(vetorResultado[9] == "texto");
 }
 
 TEST_CASE("Teste 8: verificar ordem alfabetica das palavras com indices - diferenciando entre maiuscula e minuscula") {
@@ -122,18 +116,18 @@ TEST_CASE("Teste 8: verificar ordem alfabetica das palavras com indices - difere
 
     //std::string texto = lerArquivo(nomeArquivo);
     auto resultado = contaPalavras(nomeArquivo);
-    auto vetorResultado = converterParaVetorOrdenado(resultado);
+    auto vetorResultado = ordenarPalavras(converterParaVetorOrdenado(resultado));
     REQUIRE(vetorResultado.size() == 13);
-    REQUIRE(vetorResultado[0].first == "A");
-    REQUIRE(vetorResultado[1].first == "a");
-    REQUIRE(vetorResultado[2].first == "de");
-    REQUIRE(vetorResultado[3].first == "e");
-    REQUIRE(vetorResultado[4].first == "este");
-    REQUIRE(vetorResultado[5].first == "Exemplo");
-    REQUIRE(vetorResultado[6].first == "exemplo");
-    REQUIRE(vetorResultado[7].first == "ordenacao");
-    REQUIRE(vetorResultado[8].first == "palavras");
-    REQUIRE(vetorResultado[9].first == "para");
-    REQUIRE(vetorResultado[10].first == "testar");
-    REQUIRE(vetorResultado[11].first == "texto");
+    REQUIRE(vetorResultado[0] == "A");
+    REQUIRE(vetorResultado[1] == "a");
+    REQUIRE(vetorResultado[2] == "de");
+    REQUIRE(vetorResultado[3] == "e");
+    REQUIRE(vetorResultado[4] == "este");
+    REQUIRE(vetorResultado[5] == "Exemplo");
+    REQUIRE(vetorResultado[6] == "exemplo");
+    REQUIRE(vetorResultado[7] == "ordenacao");
+    REQUIRE(vetorResultado[8] == "palavras");
+    REQUIRE(vetorResultado[9] == "para");
+    REQUIRE(vetorResultado[10] == "testar");
+    REQUIRE(vetorResultado[11] == "texto");
 }

@@ -5,6 +5,8 @@
 #include <locale>
 #include <codecvt>
 #include <fstream>
+#include <vector>
+#include <algorithm>
 
 // Função para remover acentos de uma string
 std::string removerAcentos(const std::string& str) {
@@ -51,6 +53,25 @@ std::string lerArquivo(const std::string& nomeArquivo) {
     buffer << arquivo.rdbuf();
     return buffer.str();
 }
+
+// Função para converter um mapa para um vetor de strings
+std::vector<std::string> converterParaVetorOrdenado(const std::map<std::string, int>& mapa) {
+    std::vector<std::string> vetor;
+    for (const auto& par : mapa) {
+        vetor.push_back(par.first);
+    }
+    return vetor;
+}
+
+// Função para ordenar palavras
+std::vector<std::string> ordenarPalavras(const std::vector<std::string>& palavras) {
+    std::vector<std::string> palavrasOrdenadas = palavras;
+    std::sort(palavrasOrdenadas.begin(), palavrasOrdenadas.end(), [](const std::string& a, const std::string& b) {
+        return a < b;
+    });
+    return palavrasOrdenadas;
+}
+
 
 // Função para contar palavras em um arquivo
 std::map<std::string, int> contaPalavras(const std::string& nomeArquivo) {
