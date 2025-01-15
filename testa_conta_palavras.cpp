@@ -199,3 +199,21 @@ TEST_CASE("Teste 11: verificar contagem e ordenação de palavras acentuadas") {
     REQUIRE(resultado["palavra"] == 4);
     REQUIRE(resultado["chave"] == 3);
 }
+
+#include <stdexcept>
+
+TEST_CASE("Teste 12: contaPalavras lida com arquivo inexistente") {
+    std::string nomeArquivo = "arquivo_inexistente.txt";
+
+    try {
+        std::map<std::string, int> resultado = contaPalavras(nomeArquivo);
+        // Se não lançar exceção, falha o teste
+        FAIL("Expected std::runtime_error");
+    } catch (const std::runtime_error& e) {
+        // Verifica se a exceção lançada é a esperada
+        REQUIRE(std::string(e.what()) == "Erro ao abrir o arquivo");
+    } catch (...) {
+        // Se lançar outra exceção, falha o teste
+        FAIL("Expected std::runtime_error");
+    }
+}
