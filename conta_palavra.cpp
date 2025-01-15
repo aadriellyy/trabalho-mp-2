@@ -8,7 +8,16 @@
 #include <vector>
 #include <algorithm>
 
-// Função para remover acentos de uma string
+/**
+ * @brief Remove acentos de uma string.
+ * 
+ * Esta função converte uma string UTF-8 para uma wide string, 
+ * retira o acento de caracteres 
+ * e converte a wide string de volta para UTF-8.
+ * 
+ * @param str A string de entrada que pode conter caracteres acentuados.
+ * @return std::string A string de saída sem caracteres acentuados.
+ */
 std::string removerAcentos(const std::string& str) {
     std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
     std::wstring wideStr = converter.from_bytes(str);
@@ -36,7 +45,16 @@ std::string removerAcentos(const std::string& str) {
     return converter.to_bytes(result);
 }
 
-// Função para remover caracteres especiais de uma string
+/**
+ * @brief Remove caracteres especiais de uma string.
+ * 
+ * Esta função percorre a string de entrada e remove todos os caracteres 
+ * que não são alfanuméricos ou hífens - para evitar erros gramaticias 
+ * de palavras que precisam do hífem.
+ * 
+ * @param str A string de entrada que pode conter caracteres especiais.
+ * @return std::string A string de saída contendo apenas caracteres alfanuméricos e hífens.
+ */
 std::string removerCaracteresEspeciais(const std::string& str) {
     std::string result;
     for (char ch : str) {
@@ -47,6 +65,15 @@ std::string removerCaracteresEspeciais(const std::string& str) {
     return result;
 }
 
+/**
+ * @brief Lê o conteúdo de um arquivo e retorna como uma string.
+ * 
+ * Esta função abre um arquivo especificado pelo nome, lê todo o seu conteúdo 
+ * e retorna como uma string.
+ * 
+ * @param nomeArquivo O nome do arquivo a ser lido.
+ * @return std::string O conteúdo do arquivo como uma string.
+ */
 std::string lerArquivo(const std::string& nomeArquivo) {
     std::ifstream arquivo(nomeArquivo);
     std::stringstream buffer;
@@ -54,8 +81,14 @@ std::string lerArquivo(const std::string& nomeArquivo) {
     return buffer.str();
 }
 
-// Função para converter um mapa para um vetor de strings
-std::vector<std::string> converterParaVetorOrdenado(const std::map<std::string, int>& mapa) {
+/**
+ * @brief Converte um mapa para um vetor ordenado de chaves.
+ * 
+ * Esta função percorre um mapa e insere todas as suas chaves em um vetor.
+ * 
+ * @param mapa O mapa de entrada cujas chaves serão convertidas para um vetor.
+ * @return std::vector<std::string> Um vetor contendo todas as chaves do mapa.
+ */std::vector<std::string> converterParaVetorOrdenado(const std::map<std::string, int>& mapa) {
     std::vector<std::string> vetor;
     for (const auto& par : mapa) {
         vetor.push_back(par.first);
@@ -63,7 +96,15 @@ std::vector<std::string> converterParaVetorOrdenado(const std::map<std::string, 
     return vetor;
 }
 
-// Função para ordenar palavras
+/**
+ * @brief Ordena um vetor de palavras.
+ * 
+ * Esta função recebe um vetor de palavras e retorna um novo vetor com as palavras ordenadas 
+ * em ordem alfabética, ignorando diferenças entre maiúsculas e minúsculas.
+ * 
+ * @param palavras O vetor de palavras a ser ordenado.
+ * @return std::vector<std::string> Um vetor contendo as palavras ordenadas.
+ */
 std::vector<std::string> ordenarPalavras(const std::vector<std::string>& palavras) {
     std::vector<std::string> palavrasOrdenadas = palavras;
     std::sort(palavrasOrdenadas.begin(), palavrasOrdenadas.end(), [](const std::string& a, const std::string& b) {
@@ -79,7 +120,15 @@ std::vector<std::string> ordenarPalavras(const std::vector<std::string>& palavra
     return palavrasOrdenadas;
 }
 
-// Função para contar palavras em um arquivo
+/**
+ * @brief Conta a frequência de palavras em um arquivo.
+ * 
+ * Esta função lê o conteúdo de um arquivo, remove acentos e caracteres especiais 
+ * de cada palavra, e conta a frequência de cada palavra.
+ * 
+ * @param nomeArquivo O nome do arquivo a ser processado.
+ * @return std::map<std::string, int> Um mapa contendo a frequência de cada palavra.
+ */
 std::map<std::string, int> contaPalavras(const std::string& nomeArquivo) {
     std::map<std::string, int> contagem;
     std::ifstream arquivo(nomeArquivo);
