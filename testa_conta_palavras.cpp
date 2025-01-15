@@ -177,3 +177,25 @@ TEST_CASE("Teste 10: verificar contagem e ordenação de palavras com hífens") 
     REQUIRE(resultado["chave"] == 1);
     REQUIRE(resultado["palavra"] == 1);
 }
+
+TEST_CASE("Teste 11: verificar contagem e ordenação de palavras acentuadas") {
+    std::string nomeArquivo = "teste11.txt"; 
+    std::string conteudo = "palávra palávra palávra palavra chave cháve cháve";
+    criarArquivoTeste(nomeArquivo, conteudo);
+
+    auto resultado = contaPalavras(nomeArquivo);
+    auto vetorResultado = ordenarPalavras(converterParaVetorOrdenado(resultado));
+    
+    // Imprimir resultado ordenado
+    std::cout << "Resultado ordenado:" << std::endl;
+    for (const auto& palavra : vetorResultado) {
+        std::cout << palavra << std::endl;
+    }
+
+    REQUIRE(vetorResultado.size() == 2);
+    REQUIRE(vetorResultado[0] == "chave");
+    REQUIRE(vetorResultado[1] == "palavra");
+
+    REQUIRE(resultado["palavra"] == 4);
+    REQUIRE(resultado["chave"] == 3);
+}
