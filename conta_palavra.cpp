@@ -83,14 +83,20 @@ std::vector<std::string> ordenarPalavras(const std::vector<std::string>& palavra
 std::map<std::string, int> contaPalavras(const std::string& nomeArquivo) {
     std::map<std::string, int> contagem;
     std::ifstream arquivo(nomeArquivo);
-    std::string palavra;
+    if (!arquivo.is_open()) {
+        throw std::runtime_error("Erro ao abrir o arquivo");
+    }
+    std::string linha;
 
-    while (arquivo >> palavra) {
-        palavra = removerAcentos(palavra);
-        palavra = removerCaracteresEspeciais(palavra);
-        ++contagem[palavra];
+    while (std::getline(arquivo, linha)) {
+        std::istringstream stream(linha);
+        std::string palavra;
+        while (stream >> palavra) {
+            palavra = removerAcentos(palavra);
+            palavra = removerCaracteresEspeciais(palavra);
+            ++contagem[palavra];
+        }
     }
 
-    //arquivo.close();
     return contagem;
 }
